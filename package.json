@@ -5,7 +5,12 @@
         "lint": "prettier --check \"src/**/*.{ts,js}\""
     },
     "dependencies": {
-        "canvas-confetti": "^1.2.0"
+        "@types/marked": "^4.0.7",
+        "@types/showdown": "^2.0.0",
+        "canvas-confetti": "^1.2.0",
+        "jquery": "^3.6.1",
+        "marked": "^4.1.1",
+        "showdown": "^2.1.0"
     },
     "devDependencies": {
         "@snowpack/plugin-typescript": "^1.2.1",

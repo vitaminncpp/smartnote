@@ -1,0 +1,107 @@
+* {
+    margin: 1px;
+    padding: 0px;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 50px;
+
+}
+
+.content {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 50px);
+}
+
+.notebook {
+    display: flex;
+    width: calc(100vh - 50px);
+}
+
+.section-list {
+    display: flex;
+    width: 150px;
+}
+
+.section {
+    display: flex;
+}
+
+.chapter-list {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+}
+
+.chapter {
+    display: flex;
+    position: relative;
+}
+
+
+.action-bar {
+    display: flex;
+    width: 50px;
+    height: auto;
+}
+
+.canvas {
+    display: flex;
+    position: relative;
+}
+
+.note {
+
+}
+
+.markdown-preview {
+    background: rgba(34, 34, 34, 0.19);
+}
+
+.markdown-preview blockquote {
+    font-size: 1.4em;
+    width: 60%;
+    margin: 50px auto;
+    font-family: Open Sans;
+    font-style: italic;
+    color: #555555;
+    padding: 1.2em 30px 1.2em 75px;
+    border-left: 8px solid #78C0A8;
+    line-height: 1.6;
+    position: relative;
+    background: #EDEDED;
+}
+
+.markdown-preview blockquote::before {
+    font-family: Arial;
+    content: "\201C";
+    color: #78C0A8;
+    font-size: 4em;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+}
+
+.markdown-preview blockquote::after {
+    content: '';
+}
+
+.markdown-preview blockquote span {
+    display: block;
+    color: #333333;
+    font-style: normal;
+    font-weight: bold;
+    margin-top: 1em;
+}
