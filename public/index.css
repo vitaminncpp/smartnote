@@ -85,7 +85,7 @@
 }
 
 .markdown-preview blockquote::before {
-    font-family: Arial;
+
     content: "\201C";
     color: #78C0A8;
     font-size: 4em;
