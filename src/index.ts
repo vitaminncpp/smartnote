@@ -10,7 +10,8 @@ export const notebook: Notebook = {
     content: [],
     size: 0,
     currSec: -1,
-    currChapt: -1
+    currChapt: -1,
+    currNote: -1,
 };
 
 $('.btn-preview').on('click', (event: ClickEvent) => {
@@ -30,6 +31,7 @@ const addSection = (title: string) => {
         chapters: []
     });
     notebook.size++;
+    notebook.currChapt = -1;
 }
 const addChapter = (title: string) => {
     notebook.content[notebook.currSec].chapters.push({
@@ -39,6 +41,14 @@ const addChapter = (title: string) => {
         size: 0
     });
     notebook.content[notebook.currSec].size++;
+    notebook.currNote = -1;
 }
 
-
+const addNote = (title: string, content: string) => {
+    notebook.content[notebook.currSec].chapters[notebook.currChapt].notes.push({
+        index: notebook.content[notebook.currSec].chapters[notebook.currChapt].size,
+        title: title,
+        content: content
+    });
+    notebook.content[notebook.currSec].chapters[notebook.currChapt].size++;
+}

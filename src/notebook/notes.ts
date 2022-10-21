@@ -22,5 +22,6 @@ export type Notebook = {
     content: Array<Section>,
     size: number,
     currSec: number,
-    currChapt: number
+    currChapt: number,
+    currNote:number
 }
