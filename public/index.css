@@ -1,3 +1,22 @@
+:root {
+    --section-background: #a1bca8;
+    --section-hover: rgba(0, 0, 0, 0.23);
+
+    --chapter-background: #9be3ed;
+    --chapter-hover: rgba(0, 0, 0, 0.16);
+
+    --canvas-background: #dddddd;
+
+    --general-shadow: #6d6d6d 0px 0px 10px;
+    --button-background-section: #8acec2;
+    --button-background-chapter: #afcac8;
+
+    --button-border-section-hover: solid 1px #222222;
+    --button-border-chapter-hover: solid 1px #222222;
+
+    --button-shadow: #6d6d6d 0px 0px 5px;
+}
+
 * {
     margin: 0px;
     padding: 0px;
@@ -36,11 +55,11 @@
     display: flex;
     flex-direction: column;
     width: 300px;
-    background: #8bafa2;
-    overflow: hidden;
+    background: var(--section-background);
+    overflow: scroll;
 }
 
-.section-list ul {
+.section-list ol {
     width: 100%;
 }
 
@@ -49,18 +68,35 @@
     height: auto;
     padding: 20px;
     cursor: pointer;
+    margin-bottom: 2px;
+    margin-left: 20px;
     border-radius: 10px;
 
 }
 
 .section-list li:hover {
-    background: #afd9dc;
+    background: var(--section-hover);
+}
+
+.section-list li:hover {
+    background: var(--section-hover);
 }
 
 .section-list button {
-    margin: 2px;
-    padding: 10px;
+    font-size: 2.5em;
+    padding: 7px;
+    background: var(--button-background-section);
+    border: 0px;
+    width: 200px;
+    align-self: center;
     cursor: pointer;
+    border-radius: 7px;
+    box-shadow: var(--button-shadow);
+}
+
+.section-list button:hover {
+    border: var(--button-border-section-hover);
+    border-radius: 30px;
 }
 
 .section {
@@ -72,10 +108,11 @@
     flex-direction: column;
     width: 200px;
     height: auto;
-    background: #9be3ed;
+    background: var(--chapter-background);
+    overflow: scroll;
 }
 
-.chapter-list ul {
+.chapter-list ol {
     width: 100%;
 }
 
@@ -83,21 +120,31 @@
     width: 100%;
     padding: 18px;
     border-radius: 10px;
+    margin-bottom: 2px;
+    margin-left: 15px;
     cursor: pointer;
 }
 
 .chapter-list li:hover {
-    background: #b3b3b3;
+    background: var(--chapter-hover);
 }
 
 .chapter-list button {
-    height: auto;
-    width: auto;
-    padding: 5px;
-    margin: 2px;
+    font-size: 2.5em;
+    padding: 7px;
+    background: var(--button-background-chapter);
+    border: 0px;
+    width: 150px;
+    align-self: center;
     cursor: pointer;
+    border-radius: 7px;
+    box-shadow: var(--button-shadow);
 }
 
+.chapter-list button:hover {
+    border: var(--button-border-chapter-hover);
+    border-radius: 30px;
+}
 
 .chapter {
     display: flex;
@@ -164,11 +211,34 @@
 }
 
 .active-section {
-    background: #9be3ed;
-    box-shadow: #6d6d6d 0px 0px 10px;
+    background: var(--chapter-background);
+    box-shadow: var(--button-shadow);
+}
+
+.section-list li.active-section:hover {
+    background: var(--chapter-background);
 }
 
 .active-chapter {
-    background: #dddddd;
-    box-shadow: #6d6d6d 0px 0px 10px;
+    background: var(--canvas-background);
+    box-shadow: var(--button-shadow);
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

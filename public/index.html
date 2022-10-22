@@ -20,9 +20,9 @@
 
         <div class="notebook">
             <div class="section-list">
-<!--                <div class="section-title" style="border-bottom: solid 1px #222222;padding:10px;background:#dddddd ">-->
-<!--                    Sections-->
-<!--                </div>-->
+                <!--                <div class="section-title" style="border-bottom: solid 1px #222222;padding:10px;background:#dddddd ">-->
+                <!--                    Sections-->
+                <!--                </div>-->
                 <ol style="list-style: none">
                     <li>
                         Section 1
@@ -38,8 +38,8 @@
                         Section 4
                     </li>
                 </ol>
-                <button>
-                    New Section
+                <button id="btn-add-section">
+                    +
                 </button>
             </div>
             <div class="section">
@@ -48,18 +48,18 @@
                         <li>
                             Chapter 1
                         </li>
-                        <li>
+                        <li class="active-chapter">
                             Chapter 2
                         </li>
-                        <li class="active-chapter">
+                        <li>
                             Chapter 3
                         </li>
                         <li>
                             Chapter 4
                         </li>
                     </ol>
-                    <button>
-                        New Chapter
+                    <button id="btn-add-chapter">
+                        +
                     </button>
                 </div>
                 <div class="chapter">
@@ -76,7 +76,7 @@
                             <div class="markdown-preview">
 
                             </div>
-                            <button class="btn-preview">
+                            <button id="btn-parse" class="btn-preview">
                                 Parse
                             </button>
                         </div>
