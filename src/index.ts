@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import {Converter} from 'showdown';
 import ClickEvent = JQuery.ClickEvent;
-import type {Notebook, Section} from "./notebook/notes";
-import {marked} from "marked";
+import type {Chapter, Note, Notebook, Section} from "./notebook/notes";
 
 const converter = new Converter();
 
@@ -30,7 +29,7 @@ const addSection = (title: string) => {
         index: notebook.size,
         title: title,
         size: 0,
-        chapters: []
+        chapters: new Array<Chapter>()
     };
     notebook.content.push(section);
     notebook.size++;
@@ -40,14 +39,19 @@ const addSection = (title: string) => {
     $('.section-list ol').append(secElem);
 }
 const addChapter = (title: string) => {
-    notebook.content[notebook.currSec].chapters.push({
+    let chapter: Chapter = {
         index: notebook.content[notebook.currSec].size,
         title: title,
-        notes: [],
+        notes: new Array<Note>(),
         size: 0
-    });
+    };
+    notebook.content[notebook.currSec].chapters.push(chapter);
     notebook.content[notebook.currSec].size++;
     notebook.currNote = -1;
+
+
+    let chaptElem: JQuery.htmlString = `<li>${chapter.title}</li>`;
+    $('.chapter-list ol').append(chaptElem);
 }
 
 const addNote = (title: string, content: string) => {
@@ -63,5 +67,9 @@ const init = () => {
     $('#btn-add-section').on('click', (event: ClickEvent) => {
         addSection("New Section");
     });
+    $('#btn-add-chapter').on('click', (event: ClickEvent) => {
+        addChapter("New Chapter");
+    })
 }
 init();
+
