@@ -7,7 +7,7 @@ const converter = new Converter();
 
 export const notebook: Notebook = {
     title: "demo",
-    content: [],
+    content: new Array<Section>(),
     size: 0,
     currSec: -1,
     currChapt: -1,
@@ -62,6 +62,7 @@ const addNote = (title: string, content: string) => {
     });
     notebook.content[notebook.currSec].chapters[notebook.currChapt].size++;
 }
+
 
 const init = () => {
     $('#btn-add-section').on('click', (event: ClickEvent) => {

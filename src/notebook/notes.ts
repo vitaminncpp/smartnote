@@ -23,5 +23,17 @@ export type Notebook = {
     size: number,
     currSec: number,
     currChapt: number,
-    currNote:number
+}
+
+export const addSection = (notebook: Notebook, title: string) => {
+    let section: Section = {
+        index: notebook.size,
+        title: title,
+        chapters: new Array<Chapter>(),
+        size: 0
+    };
+    notebook.content.push(section);
+    notebook.size++;
+    notebook.currSec = section.index;
+    notebook.currChapt = -1;
 }
