@@ -5,11 +5,13 @@
         "lint": "prettier --check \"src/**/*.{ts,js}\""
     },
     "dependencies": {
+        "@material/web": "^0.1.0-alpha.0",
         "@types/marked": "^4.0.7",
         "@types/showdown": "^2.0.0",
         "canvas-confetti": "^1.2.0",
         "jquery": "^3.6.1",
         "marked": "^4.1.1",
+        "material-component": "^2.0.0",
         "showdown": "^2.1.0"
     },
     "devDependencies": {

@@ -28,24 +28,33 @@
 
 .notebook {
     display: flex;
-    width: calc(100vh - 50px);
+    width: calc(100vw - 50px);
+    font-family: 'arial';
 }
 
 .section-list {
     display: flex;
     flex-direction: column;
-    width: 150px;
+    width: 300px;
     background: #8bafa2;
+    overflow: hidden;
+}
+
+.section-list ul {
+    width: 100%;
 }
 
 .section-list li {
-    width: 125px;
+    width: 100%;
     height: auto;
-    margin: 2px;
-    padding: 10px;
-    background: #bfe4d7;
-    border-radius: 5px;
-    border: solid 1px #222c;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.section-list li:hover {
+    background: #afd9dc;
 }
 
 .section-list button {
@@ -61,17 +70,24 @@
 .chapter-list {
     display: flex;
     flex-direction: column;
-    width: 100px;
+    width: 200px;
     height: auto;
-    background: #b4e6d9;
+    background: #9be3ed;
+}
+
+.chapter-list ul {
+    width: 100%;
 }
 
 .chapter-list li {
-    background: #c4d3cf;
-    padding: 7px;
-    margin: 2px;
-    border: solid 1px #222c;
-    border-radius: 3px;
+    width: 100%;
+    padding: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.chapter-list li:hover {
+    background: #b3b3b3;
 }
 
 .chapter-list button {
@@ -86,7 +102,7 @@
 .chapter {
     display: flex;
     position: relative;
-    width: calc(100vw - 300px);
+    width: calc(100vw - 550px);
     height: auto;
 }
 
@@ -100,6 +116,8 @@
 .canvas {
     display: flex;
     position: relative;
+    background: #dddddd;
+    width: 100%;
 }
 
 .note {
@@ -114,7 +132,6 @@
     font-size: 1.4em;
     width: 60%;
     margin: 50px auto;
-    font-family: Open Sans;
     font-style: italic;
     color: #555555;
     padding: 1.2em 30px 1.2em 75px;
@@ -144,4 +161,14 @@
     font-style: normal;
     font-weight: bold;
     margin-top: 1em;
+}
+
+.active-section {
+    background: #9be3ed;
+    box-shadow: #6d6d6d 0px 0px 10px;
+}
+
+.active-chapter {
+    background: #dddddd;
+    box-shadow: #6d6d6d 0px 0px 10px;
 }
