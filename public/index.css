@@ -56,10 +56,11 @@
     flex-direction: column;
     width: 300px;
     background: var(--section-background);
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-.section-list ol {
+.section-list ul {
     width: 100%;
 }
 
@@ -71,11 +72,6 @@
     margin-bottom: 2px;
     margin-left: 20px;
     border-radius: 10px;
-
-}
-
-.section-list li:hover {
-    background: var(--section-hover);
 }
 
 .section-list li:hover {
@@ -92,11 +88,13 @@
     cursor: pointer;
     border-radius: 7px;
     box-shadow: var(--button-shadow);
+    transition: all .2s;
 }
 
 .section-list button:hover {
     border: var(--button-border-section-hover);
     border-radius: 30px;
+    transition: all .2s;
 }
 
 .section {
@@ -112,7 +110,7 @@
     overflow: scroll;
 }
 
-.chapter-list ol {
+.chapter-list ul {
     width: 100%;
 }
 
@@ -139,11 +137,13 @@
     cursor: pointer;
     border-radius: 7px;
     box-shadow: var(--button-shadow);
+    transition: all .2s;
 }
 
 .chapter-list button:hover {
     border: var(--button-border-chapter-hover);
     border-radius: 30px;
+    transition: all .2s;
 }
 
 .chapter {

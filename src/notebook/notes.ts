@@ -1,3 +1,5 @@
+import {notebook} from "../index";
+
 export type Note = {
     index: number,
     title: string,
@@ -37,3 +39,16 @@ export const addSection = (notebook: Notebook, title: string) => {
     notebook.currSec = section.index;
     notebook.currChapt = -1;
 }
+
+export const addChapter = (notebook: Notebook, title: string) => {
+    let section = notebook.content[notebook.currSec];
+    let chapter: Chapter = {
+        index: section.size,
+        title: title,
+        notes: new Array<Note>(),
+        size: 0
+    };
+    notebook.currChapt = section.size;
+    section.chapters.push(chapter);
+    section.size++;
+};
