@@ -1,5 +1,3 @@
-import {notebook} from "../index";
-
 export type Note = {
     index: number,
     title: string,
@@ -16,7 +14,8 @@ export type Section = {
     index: number,
     title: string,
     chapters: Array<Chapter>,
-    size: number
+    size: number,
+    currChapt: number;
 };
 
 export type Notebook = {
@@ -32,7 +31,8 @@ export const addSection = (notebook: Notebook, title: string) => {
         index: notebook.size,
         title: title,
         chapters: new Array<Chapter>(),
-        size: 0
+        size: 0,
+        currChapt: -1
     };
     notebook.content.push(section);
     notebook.size++;
@@ -48,7 +48,9 @@ export const addChapter = (notebook: Notebook, title: string) => {
         notes: new Array<Note>(),
         size: 0
     };
-    notebook.currChapt = section.size;
+    notebook.currChapt = chapter.index;
+    section.currChapt = -1;
     section.chapters.push(chapter);
     section.size++;
 };
+

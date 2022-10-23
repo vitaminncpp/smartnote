@@ -1,9 +1,9 @@
 import $ from 'jquery';
 import {Converter} from 'showdown';
-import ClickEvent = JQuery.ClickEvent;
-import type {Chapter, Note, Notebook, Section} from "./notebook/notes";
+import type {Notebook, Section} from "./notebook/notes";
 import {addChapter, addSection} from "./notebook/notes";
-import {renderChapterList, renderSectionList} from "./render/Render";
+import {renderChapterList, renderNotes, renderSectionList} from "./render/Render";
+import ClickEvent = JQuery.ClickEvent;
 
 const converter = new Converter();
 
@@ -25,16 +25,41 @@ $('.btn-preview').on('click', (event: ClickEvent) => {
     $(previewSelection).html(preview);
 });
 
+const onSectionClick = (event: ClickEvent) => {
+    $(`#sec-${notebook.currSec}`).removeClass('.active-section');
+    notebook.currSec = event.target.getAttribute("key");
+    $(`#sec-${notebook.currSec}`).addClass(".active-section");
+
+    notebook.currChapt = notebook.content[notebook.currSec].currChapt;
+    renderChapterList(notebook);
+}
+
+
+const onChapterClick = (event: ClickEvent) => {
+    notebook.currChapt = event.target.getAttribute("key");
+    notebook.content[notebook.currSec].currChapt = event.target.getAttribute("key");
+
+    renderNotes(notebook);
+}
+
 
 const init = () => {
+
+
     $('#btn-add-section').on('click', (event: ClickEvent) => {
         addSection(notebook, `Section ${notebook.size + 1}`);
         renderSectionList(notebook);
         renderChapterList(notebook);
+        renderNotes(notebook);
+
+        $('.section-list li').on('click', onSectionClick);
+        $('.chapter-list li').on('click', onChapterClick);
     });
+
     $('#btn-add-chapter').on('click', (event: ClickEvent) => {
         addChapter(notebook, `Chapter ${notebook.content[notebook.currSec].size + 1}`);
         renderChapterList(notebook);
+        renderNotes(notebook);
     })
 }
 init();

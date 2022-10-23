@@ -1,10 +1,11 @@
 import type {Notebook} from "../notebook/notes";
 import $ from 'jquery';
 
+
 export const renderSectionList = (notebook: Notebook) => {
     let htmlString: string = '';
     notebook.content.forEach((x, i) => {
-        htmlString += `<li id="sec-${i}">${x.title}</li>`;
+        htmlString += `<li id="sec-${i}" key="${i}">${x.title}</li>`;
     });
     $('#section-list').html(htmlString);
     $(`#sec-${notebook.currSec}`).addClass('active-section');
@@ -13,7 +14,7 @@ export const renderSectionList = (notebook: Notebook) => {
 export const renderChapterList = (notebook: Notebook) => {
     let htmlString: string = '';
     notebook.content[notebook.currSec].chapters.forEach((x, i) => {
-        htmlString += `<li id="ch-${i}">${x.title}</li>`;
+        htmlString += `<li id="ch-${i}" key="${i}">${x.title}</li>`;
     });
     $('#chapter-list').html(htmlString);
     $(`#ch-${notebook.currChapt}`).addClass('active-chapter');
