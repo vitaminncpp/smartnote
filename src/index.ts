@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import {Converter} from 'showdown';
-import {addChapter, addSection, createNotebook} from "./notebook/notes";
+import {addChapter, addNote, addSection, createNotebook} from "./notebook/notes";
 import {renderChapterList, renderNotes, renderSectionList} from "./render/Render";
 import ClickEvent = JQuery.ClickEvent;
 
@@ -70,6 +70,10 @@ const init = () => {
         $('.chapter-list li').on('click', onChapterClick);
     })
 
+    $('#btn-add-note').on('click', (event: ClickEvent) => {
+        addNote(notebook.currChapt, "Note Title", "Note Content");
+        renderNotes(notebook);
+    });
 
     renderSectionList(notebook);
     renderChapterList(notebook);
