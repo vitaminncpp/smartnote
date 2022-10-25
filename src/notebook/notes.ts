@@ -2,7 +2,7 @@ export type Note = {
     index: number,
     title: string,
     content: string
-}
+};
 
 export type Chapter = {
     index: number,
@@ -15,16 +15,16 @@ export type Section = {
     title: string,
     chapters: Array<Chapter>,
     size: number,
-    currChapt: number;
+    currChapt: Chapter;
 };
 
 export type Notebook = {
     title: string,
     content: Array<Section>,
     size: number,
-    currSec: number,
-    currChapt: number,
-}
+    currSec: Section,
+    currChapt: Chapter,
+};
 
 export const addSection = (notebook: Notebook, title: string) => {
     let section: Section = {
@@ -32,25 +32,47 @@ export const addSection = (notebook: Notebook, title: string) => {
         title: title,
         chapters: new Array<Chapter>(),
         size: 0,
-        currChapt: -1
+        currChapt: null
     };
+    addChapter(section, "Chapter 1");
     notebook.content.push(section);
     notebook.size++;
-    notebook.currSec = section.index;
-    notebook.currChapt = -1;
-}
+    notebook.currSec = section;
+    notebook.currChapt = section.currChapt;
+};
 
-export const addChapter = (notebook: Notebook, title: string) => {
-    let section = notebook.content[notebook.currSec];
+export const addChapter = (section: Section, title: string) => {
     let chapter: Chapter = {
         index: section.size,
         title: title,
         notes: new Array<Note>(),
         size: 0
     };
-    notebook.currChapt = chapter.index;
-    section.currChapt = -1;
     section.chapters.push(chapter);
     section.size++;
+    section.currChapt = chapter;
 };
 
+
+export const addNote = (chapter: Chapter, title: string, content: string) => {
+    let note: Note = {
+        index: chapter.size,
+        title: title,
+        content: content
+    };
+    chapter.notes.push(note);
+    chapter.size++;
+};
+
+
+export const createNotebook = (name: string): Notebook => {
+    let notebook: Notebook = {
+        title: name,
+        content: new Array<Section>(),
+        currSec: null,
+        currChapt: null,
+        size: 0
+    }
+    addSection(notebook, "Section 1");
+    return notebook;
+};

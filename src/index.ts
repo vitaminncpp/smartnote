@@ -1,19 +1,11 @@
 import $ from 'jquery';
 import {Converter} from 'showdown';
-import type {Notebook, Section} from "./notebook/notes";
-import {addChapter, addSection} from "./notebook/notes";
+import {addChapter, addSection, createNotebook} from "./notebook/notes";
 import {renderChapterList, renderNotes, renderSectionList} from "./render/Render";
 import ClickEvent = JQuery.ClickEvent;
 
 const converter = new Converter();
-
-export const notebook: Notebook = {
-    title: "demo",
-    content: new Array<Section>(),
-    size: 0,
-    currSec: -1,
-    currChapt: -1,
-};
+const notebook = createNotebook("Demo");
 
 $('.btn-preview').on('click', (event: ClickEvent) => {
     parent = event.target.parentElement.id;
@@ -26,20 +18,31 @@ $('.btn-preview').on('click', (event: ClickEvent) => {
 });
 
 const onSectionClick = (event: ClickEvent) => {
-    $(`#sec-${notebook.currSec}`).removeClass('.active-section');
-    notebook.currSec = event.target.getAttribute("key");
-    $(`#sec-${notebook.currSec}`).addClass(".active-section");
+    $(`#sec-${notebook.currSec.index}`).removeClass('active-section');
+    notebook.currSec = notebook.content[event.target.getAttribute("key")];
+    $(`#sec-${notebook.currSec.index}`).addClass("active-section");
 
-    notebook.currChapt = notebook.content[notebook.currSec].currChapt;
+    notebook.currChapt = notebook.currSec.currChapt;
+    renderSectionList(notebook);
     renderChapterList(notebook);
+    renderNotes(notebook);
+
+    $('.section-list li').on('click', onSectionClick);
+    $('.chapter-list li').on('click', onChapterClick);
 }
 
 
 const onChapterClick = (event: ClickEvent) => {
-    notebook.currChapt = event.target.getAttribute("key");
-    notebook.content[notebook.currSec].currChapt = event.target.getAttribute("key");
-
+    console.log(notebook);
+    $(`#ch-${notebook.currChapt.index}`).removeClass('active-chapter');
+    notebook.currChapt = notebook.currSec.chapters[event.target.getAttribute("key")];
+    notebook.currSec.currChapt = notebook.currChapt;
+    $(`#ch-${notebook.currChapt.index}`).addClass('active-chapter');
+    renderChapterList(notebook);
     renderNotes(notebook);
+
+    console.log(notebook);
+    $('.chapter-list li').on('click', onChapterClick);
 }
 
 
@@ -57,10 +60,19 @@ const init = () => {
     });
 
     $('#btn-add-chapter').on('click', (event: ClickEvent) => {
-        addChapter(notebook, `Chapter ${notebook.content[notebook.currSec].size + 1}`);
+        addChapter(notebook.currSec, `Chapter ${notebook.currSec.size + 1}`);
         renderChapterList(notebook);
         renderNotes(notebook);
+
+        $('.chapter-list li').on('click', onChapterClick);
     })
+
+    renderSectionList(notebook);
+    renderChapterList(notebook);
+    renderNotes(notebook);
+
+    $('.section-list li').on('click', onSectionClick);
+    $('.chapter-list li').on('click', onChapterClick);
 }
 init();
 

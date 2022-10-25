@@ -15,6 +15,10 @@
     --button-border-chapter-hover: solid 1px #222222;
 
     --button-shadow: #6d6d6d 0px 0px 5px;
+
+    --note-shadow: #6d6d6d99 0px 0px 5px;
+
+    --button-background-note: rgb(163, 209, 170);
 }
 
 * {
@@ -78,7 +82,7 @@
     background: var(--section-hover);
 }
 
-.section-list button {
+#btn-add-section {
     font-size: 2.5em;
     padding: 7px;
     background: var(--button-background-section);
@@ -91,7 +95,7 @@
     transition: all .2s;
 }
 
-.section-list button:hover {
+#btn-add-section:hover {
     border: var(--button-border-section-hover);
     border-radius: 30px;
     transition: all .2s;
@@ -127,7 +131,7 @@
     background: var(--chapter-hover);
 }
 
-.chapter-list button {
+#btn-add-chapter {
     font-size: 2.5em;
     padding: 7px;
     background: var(--button-background-chapter);
@@ -140,7 +144,7 @@
     transition: all .2s;
 }
 
-.chapter-list button:hover {
+#btn-add-chapter:hover {
     border: var(--button-border-chapter-hover);
     border-radius: 30px;
     transition: all .2s;
@@ -158,17 +162,6 @@
     display: flex;
     width: 50px;
     height: auto;
-}
-
-.canvas {
-    display: flex;
-    position: relative;
-    background: #dddddd;
-    width: 100%;
-}
-
-.note {
-
 }
 
 .markdown-preview {
@@ -223,6 +216,77 @@
     background: var(--canvas-background);
     box-shadow: var(--button-shadow);
 }
+.chapter-list li.active-chapter{
+    background: var(--canvas-background);
+}
+
+#canvas {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #dddddd;
+    width: 100%;
+}
+
+
+/**
+TODO Make positioning relative (or absolute)
+ */
+#canvas ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    width: 100%;}
+
+#canvas li {
+    justify-content: center;
+    width: 800px;
+}
+
+.note {
+    width: 700px;
+    margin: 20px;
+    padding: 10px;
+    background: #ffff;
+    border-radius: 10px;
+    justify-self: center;
+    box-shadow: var(--note-shadow);
+}
+
+.note-title {
+    font-size: 2rem;
+    font-family: 'arial';
+    margin: 2px;
+    padding: 5px;
+}
+
+.note-content {
+    font-size: 1.2rem;
+    margin: 5px;
+    padding: 2px;
+    border-top: solid 1px #4444;
+}
+
+#btn-add-note {
+    font-size: 2.5rem;
+    padding: 7px;
+    background: var(--button-background-note);
+    border: 0px;
+    width: 300px;
+    align-self: center;
+    cursor: pointer;
+    border-radius: 7px;
+    box-shadow: var(--button-shadow);
+    transition: all .2s;
+}
+
+#btn-add-note:hover {
+    border: var(--button-border-section-hover);
+    border-radius: 30px;
+    transition: all .2s;
+}
+
 
 ::-webkit-scrollbar {
     width: 0px;
