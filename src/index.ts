@@ -33,7 +33,6 @@ const onSectionClick = (event: ClickEvent) => {
 
 
 const onChapterClick = (event: ClickEvent) => {
-    console.log(notebook);
     $(`#ch-${notebook.currChapt.index}`).removeClass('active-chapter');
     notebook.currChapt = notebook.currSec.chapters[event.target.getAttribute("key")];
     notebook.currSec.currChapt = notebook.currChapt;
@@ -61,11 +60,16 @@ const init = () => {
 
     $('#btn-add-chapter').on('click', (event: ClickEvent) => {
         addChapter(notebook.currSec, `Chapter ${notebook.currSec.size + 1}`);
+
+        //TODO a hacky temporary solution
+        notebook.currChapt = notebook.currSec.currChapt;
+
         renderChapterList(notebook);
         renderNotes(notebook);
 
         $('.chapter-list li').on('click', onChapterClick);
     })
+
 
     renderSectionList(notebook);
     renderChapterList(notebook);
