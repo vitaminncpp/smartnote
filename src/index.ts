@@ -1,11 +1,12 @@
 import $ from 'jquery';
 import {Converter} from 'showdown';
-import {addChapter, addNote, addSection, createNotebook} from "./notebook/notes";
-import {renderChapterList, renderNotes, renderSectionList} from "./render/Render";
+import {addChapter, addNote, addSection, createNotebook, Notebook} from "./notebook/notes";
+import {renderChapterList, renderNotebook, renderNotes, renderSectionList} from "./render/Render";
 import ClickEvent = JQuery.ClickEvent;
+import {eraseCookie, getCookie, setCookie} from "./util/util";
 
 const converter = new Converter();
-const notebook = createNotebook("Demo");
+var notebook: Notebook = createNotebook("New Notebook");
 
 $('.btn-preview').on('click', (event: ClickEvent) => {
     parent = event.target.parentElement.id;
@@ -23,9 +24,7 @@ const onSectionClick = (event: ClickEvent) => {
     $(`#sec-${notebook.currSec.index}`).addClass("active-section");
 
     notebook.currChapt = notebook.currSec.currChapt;
-    renderSectionList(notebook);
-    renderChapterList(notebook);
-    renderNotes(notebook);
+    renderNotebook(notebook);
 
     $('.section-list li').on('click', onSectionClick);
     $('.chapter-list li').on('click', onChapterClick);
@@ -40,19 +39,38 @@ const onChapterClick = (event: ClickEvent) => {
     renderChapterList(notebook);
     renderNotes(notebook);
 
-    console.log(notebook);
     $('.chapter-list li').on('click', onChapterClick);
 }
 
 
 const init = () => {
 
+    $('#btn-save').on('click', (event: ClickEvent) => {
+        setCookie('notebook', JSON.stringify(notebook), 1);
+        renderNotebook(notebook);
+
+        $('.section-list li').on('click', onSectionClick);
+        $('.chapter-list li').on('click', onChapterClick);
+    });
+    $('#btn-load').on('click', (event: ClickEvent) => {
+        notebook = JSON.parse(getCookie('notebook'));
+        renderNotebook(notebook);
+
+        $('.section-list li').on('click', onSectionClick);
+        $('.chapter-list li').on('click', onChapterClick);
+    });
+    $('#btn-delete').on('click', (event: ClickEvent) => {
+        eraseCookie('notebook');
+        notebook = createNotebook("New Notebook");
+        renderNotebook(notebook);
+
+        $('.section-list li').on('click', onSectionClick);
+        $('.chapter-list li').on('click', onChapterClick);
+    });
 
     $('#btn-add-section').on('click', (event: ClickEvent) => {
         addSection(notebook, `Section ${notebook.size + 1}`);
-        renderSectionList(notebook);
-        renderChapterList(notebook);
-        renderNotes(notebook);
+        renderNotebook(notebook);
 
         $('.section-list li').on('click', onSectionClick);
         $('.chapter-list li').on('click', onChapterClick);
@@ -74,10 +92,7 @@ const init = () => {
         addNote(notebook.currChapt, "Note Title", "Note Content");
         renderNotes(notebook);
     });
-
-    renderSectionList(notebook);
-    renderChapterList(notebook);
-    renderNotes(notebook);
+    renderNotebook(notebook);
 
     $('.section-list li').on('click', onSectionClick);
     $('.chapter-list li').on('click', onChapterClick);

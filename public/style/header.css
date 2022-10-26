@@ -1,0 +1,17 @@
+
+.header button {
+    margin: 5px;
+    padding: 10px;
+    width: 100px;
+    height: 35px;
+    border: 0px;
+    border-radius: 10px;
+    box-shadow: var(--button-shadow);
+    cursor: pointer;
+}
+
+.header button:hover {
+    border-radius: 15px;
+    border: solid 1px #222;
+    transition: all .2s;
+}
