@@ -91,10 +91,12 @@ const init = () => {
         addNote(notebook.currChapt, "Note Title", "Note Content");
         renderNotes(notebook);
     });
-    renderNotebook(notebook);
 
-    $('.section-list li').on('click', onSectionClick);
-    $('.chapter-list li').on('click', onChapterClick);
+    $('#btn-load').trigger('click');
+
+    $('#btn-go').on('click', (event: ClickEvent) => {
+        $('#dummy').html($('#xss').val().toString());
+    });
 }
 init();
 

@@ -14,7 +14,17 @@
 <script type="module" src="./dist/index.js"></script>
 <div id="app">
     <header class="header">
-        this is header
+        <div class="xss">
+            <div id="lbl-some-cool">
+                Try Some cool stuff here
+            </div>
+            <input id="xss" type="text">
+            <button id="btn-go">
+                Go
+            </button>
+            <div id="dummy"></div>
+        </div>
+
         <button id="btn-save">Save</button>
         <button id="btn-load">Load</button>
         <button id="btn-delete">Delete</button>

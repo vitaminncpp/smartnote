@@ -26,6 +26,10 @@
     padding: 0px;
 }
 
+[bgcolor="black"] {
+    background-color: white;
+}
+
 #app {
     display: flex;
     flex-direction: column;
