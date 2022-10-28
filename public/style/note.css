@@ -26,6 +26,7 @@ TODO Make positioning relative (or absolute)
 #canvas li {
     justify-content: center;
     width: 800px;
+    position: relative;
 }
 
 .note {

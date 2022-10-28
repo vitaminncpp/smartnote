@@ -6,7 +6,7 @@ import ClickEvent = JQuery.ClickEvent;
 import {eraseCookie, getCookie, setCookie} from "./util/util";
 
 const converter = new Converter();
-var notebook: Notebook = createNotebook("New Notebook");
+let notebook: Notebook = createNotebook("New Notebook");
 
 $('.btn-preview').on('click', (event: ClickEvent) => {
     parent = event.target.parentElement.id;
@@ -44,7 +44,6 @@ const onChapterClick = (event: ClickEvent) => {
 
 
 const init = () => {
-
     $('#btn-save').on('click', (event: ClickEvent) => {
         setCookie('notebook', JSON.stringify(notebook), 1);
         renderNotebook(notebook);

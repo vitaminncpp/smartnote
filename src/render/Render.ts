@@ -35,12 +35,10 @@ export const renderNotes: (notebook: Notebook) => void = (notebook: Notebook) =>
                                     <div class="title">
                                         ${x.index}. ${x.title}
                                     </div>
-                                    <span>
                                         <div class="edit">
                                             <button>+</button>
                                             <button>+</button>
                                         </div>
-                                    </span>
                                 </div>
                                 <div class="note-content">${x.content}</div>
                             </div>
