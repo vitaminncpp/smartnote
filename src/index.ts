@@ -42,6 +42,19 @@ const onChapterClick = (event: ClickEvent) => {
     $('.chapter-list li').on('click', onChapterClick);
 }
 
+export const editNote: (event: ClickEvent) => void = (event: ClickEvent) => {
+    let key: number = event.target.getAttribute("key");
+    let contentBody: JQuery = $(`li#note-${key} .note-content`);
+    let editMode: string = contentBody.attr("contenteditable");
+
+    if (editMode == 'true') {
+        console.log(editMode);
+        contentBody.attr("contenteditable", "false");
+    } else if (editMode == 'false') {
+        console.log(editMode);
+        contentBody.attr("contenteditable", "true");
+    }
+}
 
 const init = () => {
     $('#btn-save').on('click', (event: ClickEvent) => {
@@ -53,6 +66,9 @@ const init = () => {
     });
     $('#btn-load').on('click', (event: ClickEvent) => {
         notebook = JSON.parse(getCookie('notebook'));
+        if (notebook == null) {
+            notebook = createNotebook('Default Notebook');
+        }
         renderNotebook(notebook);
 
         $('.section-list li').on('click', onSectionClick);

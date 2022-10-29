@@ -1,6 +1,7 @@
 import type {Chapter, Notebook} from "../notebook/notes";
 import $ from 'jquery';
 import ClickEvent = JQuery.ClickEvent;
+import {editNote} from "../index";
 
 export const renderNotebook: (notebook: Notebook) => void = (notebook: Notebook) => {
     renderSectionList(notebook);
@@ -45,15 +46,6 @@ export const renderNotes: (notebook: Notebook) => void = (notebook: Notebook) =>
                         </li>`;
     });
     $('#canvas ul').html(htmlString);
+    $('.note button').on('click', editNote);
 }
 
-
-export const editNote: (event: ClickEvent) => void = (event: ClickEvent) => {
-    let key: number = event.target.getAttribute("key");
-    let contentBody: JQuery = $(`li#note-${key} .note-content`);
-    let editMode: string = contentBody.attr("contenteditable");
-    if (editMode == 'true') {
-    } else if (editMode == 'false') {
-
-    }
-}

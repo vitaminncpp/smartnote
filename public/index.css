@@ -26,10 +26,6 @@
     padding: 0px;
 }
 
-[bgcolor="black"] {
-    background-color: white;
-}
-
 #app {
     display: flex;
     flex-direction: column;
@@ -38,14 +34,6 @@
     background: #cccc;
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 50px;
-    background: #78C0A8;
-}
 
 .content {
     display: flex;
