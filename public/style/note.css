@@ -50,7 +50,7 @@ TODO Make positioning relative (or absolute)
 }
 
 .note-content {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 5px;
     padding: 2px;
     border-top: solid 1px #4444;
@@ -86,4 +86,14 @@ button.note-edit {
     border-radius: 10px;
     box-shadow: var(--button-shadow);
     cursor: pointer;
+}
+
+.view-mode {
+    padding: 10px;
+}
+
+.edit-mode {
+    padding: 10px;
+    font-family: monospace;
+    font-size: 1em;
 }

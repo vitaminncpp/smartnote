@@ -50,9 +50,18 @@ export const editNote: (event: ClickEvent) => void = (event: ClickEvent) => {
     if (editMode == 'true') {
         console.log(editMode);
         contentBody.attr("contenteditable", "false");
+        contentBody.removeClass('edit-mode');
+        contentBody.addClass('view-mode');
+        event.target.style.backgroundImage = `url('./../assets/edit-icon.svg')`;
+        notebook.currChapt.notes[key].content = contentBody.html();
+        contentBody.html(converter.makeHtml(notebook.currChapt.notes[key].content));
     } else if (editMode == 'false') {
         console.log(editMode);
         contentBody.attr("contenteditable", "true");
+        contentBody.removeClass('view-mode');
+        contentBody.addClass('edit-mode');
+        contentBody.html(notebook.currChapt.notes[key].content);
+        event.target.style.backgroundImage = `url('./../assets/check-mark.png')`;
     }
 }
 
