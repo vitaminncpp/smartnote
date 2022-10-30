@@ -5,7 +5,7 @@ import {renderChapterList, renderNotebook, renderNotes, renderSectionList} from 
 import ClickEvent = JQuery.ClickEvent;
 import {eraseCookie, getCookie, setCookie} from "./util/util";
 
-const converter = new Converter();
+const converter = new Converter({tables:true});
 let notebook: Notebook = createNotebook("New Notebook");
 
 $('.btn-preview').on('click', (event: ClickEvent) => {
@@ -45,23 +45,26 @@ const onChapterClick = (event: ClickEvent) => {
 export const editNote: (event: ClickEvent) => void = (event: ClickEvent) => {
     let key: number = event.target.getAttribute("key");
     let contentBody: JQuery = $(`li#note-${key} .note-content`);
+    let editor = $(`li#note-${key} textarea.note-editor`);
     let editMode: string = contentBody.attr("contenteditable");
 
     if (editMode == 'true') {
-        console.log(editMode);
         contentBody.attr("contenteditable", "false");
         contentBody.removeClass('edit-mode');
         contentBody.addClass('view-mode');
         event.target.style.backgroundImage = `url('./../assets/edit-icon.svg')`;
-        notebook.currChapt.notes[key].content = contentBody.html();
+        notebook.currChapt.notes[key].content = editor.val().toString();
         contentBody.html(converter.makeHtml(notebook.currChapt.notes[key].content));
+        editor.css({'display': 'none'});
+        contentBody.css({'display': 'block'});
     } else if (editMode == 'false') {
-        console.log(editMode);
+        event.target.style.backgroundImage = `url('./../assets/check-mark.png')`;
         contentBody.attr("contenteditable", "true");
         contentBody.removeClass('view-mode');
         contentBody.addClass('edit-mode');
         contentBody.html(notebook.currChapt.notes[key].content);
-        event.target.style.backgroundImage = `url('./../assets/check-mark.png')`;
+        contentBody.css({'display': 'none'});
+        editor.css({'display': 'block'});
     }
 }
 

@@ -31,6 +31,8 @@ TODO Make positioning relative (or absolute)
 }
 
 .note {
+    display: flex;
+    flex-direction: column;
     width: 700px;
     margin: 20px;
     padding: 10px;
@@ -96,4 +98,13 @@ button.note-edit {
     padding: 10px;
     font-family: monospace;
     font-size: 1em;
+}
+
+textarea.note-editor{
+    padding: 10px;
+    font-family: 'monospace';
+    display: none;
+    border:solid 1px #cccc;
+    width: calc(100% - 90px);
+    align-self: center;
 }

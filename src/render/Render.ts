@@ -42,6 +42,7 @@ export const renderNotes: (notebook: Notebook) => void = (notebook: Notebook) =>
                                         </div>
                                 </div>
                                 <div class="note-content" contenteditable="false">${x.content}</div>
+                                <textarea cols="30" rows="10" class="note-editor"></textarea>
                             </div>
                         </li>`;
     });
