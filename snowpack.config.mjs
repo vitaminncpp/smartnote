@@ -1,7 +1,7 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
     mount: {
-        public: {url: '/', static: true},
+        public: {url: '/', static: true, dot: true},
         src: {url: '/dist'},
     },
     plugins: [
@@ -13,6 +13,7 @@ export default {
             },
         ],
     ],
+
     routes: [
         /* Enable an SPA Fallback in development: */
         // {"match": "routes", "src": ".*", "dest": "/index.html"},
@@ -29,5 +30,6 @@ export default {
     },
     buildOptions: {
         /* ... */
+        baseUrl: '/smartnote',
     },
 };
