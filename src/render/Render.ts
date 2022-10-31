@@ -2,6 +2,9 @@ import type {Chapter, Notebook} from "../notebook/notes";
 import $ from 'jquery';
 import ClickEvent = JQuery.ClickEvent;
 import {editNote} from "../index";
+import {Converter} from "showdown";
+
+let converter = new Converter({tables: true});
 
 export const renderNotebook: (notebook: Notebook) => void = (notebook: Notebook) => {
     renderSectionList(notebook);
@@ -41,7 +44,8 @@ export const renderNotes: (notebook: Notebook) => void = (notebook: Notebook) =>
                                             <button class="note-edit" key="${i}"></button>
                                         </div>
                                 </div>
-                                <div class="note-content" contenteditable="false">${x.content}</div>
+                                <hr />
+                                <div class="note-content markdown" contenteditable="false">${converter.makeHtml(x.content)}</div>
                                 <textarea cols="30" rows="10" class="note-editor"></textarea>
                             </div>
                         </li>`;

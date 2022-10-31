@@ -26,6 +26,12 @@
     padding: 0px;
 }
 
+ul,
+li {
+    margin-left: 0;
+    list-style-type: none;
+}
+
 #app {
     display: flex;
     flex-direction: column;

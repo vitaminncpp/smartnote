@@ -55,7 +55,6 @@ TODO Make positioning relative (or absolute)
     font-size: 1rem;
     margin: 5px;
     padding: 2px;
-    border-top: solid 1px #4444;
 }
 
 #btn-add-note {
@@ -83,6 +82,8 @@ button.note-edit {
     margin: 7px;
     background-image: url("./../assets/edit-icon.svg");
     background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: content-box;
     font-size: 1.5rem;
     border: 0px;
     border-radius: 10px;
@@ -100,11 +101,11 @@ button.note-edit {
     font-size: 1em;
 }
 
-textarea.note-editor{
+textarea.note-editor {
     padding: 10px;
     font-family: 'monospace';
     display: none;
-    border:solid 1px #cccc;
+    border: solid 1px #cccc;
     width: calc(100% - 90px);
     align-self: center;
 }
