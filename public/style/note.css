@@ -16,17 +16,16 @@
 /**
 TODO Make positioning relative (or absolute)
  */
-#canvas ul {
+#canvas > ul {
     display: flex;
     flex-direction: column;
-    align-items: center;
     list-style: none;
+    align-items: center;
     width: 100%;
 }
 
-#canvas li {
+#canvas > ul > li {
     justify-content: center;
-    width: 800px;
     position: relative;
 }
 
@@ -36,7 +35,7 @@ TODO Make positioning relative (or absolute)
     width: 700px;
     margin: 20px;
     padding: 10px;
-    background: #ffff;
+    background: #ebebeb;
     border-radius: 10px;
     justify-self: center;
     box-shadow: var(--note-shadow);
@@ -106,6 +105,6 @@ textarea.note-editor {
     font-family: 'monospace';
     display: none;
     border: solid 1px #cccc;
-    width: calc(100% - 90px);
+    width: calc(100% - 40px);
     align-self: center;
 }

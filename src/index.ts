@@ -5,8 +5,8 @@ import {renderChapterList, renderNotebook, renderNotes, renderSectionList} from 
 import ClickEvent = JQuery.ClickEvent;
 import {eraseCookie, getCookie, setCookie} from "./util/util";
 
-const converter = new Converter({tables:true});
-let notebook: Notebook = createNotebook("New Notebook");
+const converter = new Converter({tables: true});
+var notebook: Notebook = createNotebook("New Notebook");
 
 $('.btn-preview').on('click', (event: ClickEvent) => {
     parent = event.target.parentElement.id;
@@ -62,7 +62,9 @@ export const editNote: (event: ClickEvent) => void = (event: ClickEvent) => {
         contentBody.attr("contenteditable", "true");
         contentBody.removeClass('view-mode');
         contentBody.addClass('edit-mode');
-        contentBody.html(notebook.currChapt.notes[key].content);
+        console.log(notebook.currChapt.notes[key].content);
+        console.log(key);
+        editor.val(notebook.currChapt.notes[key].content);
         contentBody.css({'display': 'none'});
         editor.css({'display': 'block'});
     }

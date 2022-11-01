@@ -45,7 +45,7 @@ export const renderNotes: (notebook: Notebook) => void = (notebook: Notebook) =>
                                         </div>
                                 </div>
                                 <hr />
-                                <div class="note-content markdown" contenteditable="false">${converter.makeHtml(x.content)}</div>
+                                <div class="note-content markdown view-mode" contenteditable="false">${converter.makeHtml(x.content)}</div>
                                 <textarea cols="30" rows="10" class="note-editor"></textarea>
                             </div>
                         </li>`;
