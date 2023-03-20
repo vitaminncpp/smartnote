@@ -33,3 +33,5 @@ yarn-error.log*
 !src/**/[Dd]uild/
 
 package-lock.json
+
+credentials.js

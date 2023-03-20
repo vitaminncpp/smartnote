@@ -3,6 +3,10 @@ import $ from 'jquery';
 import ClickEvent = JQuery.ClickEvent;
 import {editNote} from "../index";
 import {Converter} from "showdown";
+import MouseDownEvent = JQuery.MouseDownEvent;
+import MouseMoveEvent = JQuery.MouseMoveEvent;
+import MouseUpEvent = JQuery.MouseUpEvent;
+import {state} from "../util/state";
 
 let converter = new Converter({tables: true});
 
@@ -43,7 +47,7 @@ export const renderNotes: (notebook: Notebook) => void = (notebook: Notebook) =>
                                         <div class="edit">
                                             <button class="note-edit" key="${i}"></button>
                                         </div>
-                                </div>
+                                    </div>
                                 <hr />
                                 <div class="note-content markdown view-mode" contenteditable="false">${converter.makeHtml(x.content)}</div>
                                 <textarea cols="30" rows="10" class="note-editor"></textarea>
@@ -52,5 +56,31 @@ export const renderNotes: (notebook: Notebook) => void = (notebook: Notebook) =>
     });
     $('#canvas ul').html(htmlString);
     $('.note button').on('click', editNote);
+/**
+    $('#canvas > ul > li').on('mousedown', (event: MouseDownEvent) => {
+        state.mouseLDown = true;
+        console.log("MouseDown");
+    });
+    $('#canvas > ul > li').on('mousemove', (event: MouseMoveEvent) => {
+        if (state.xPrev == 0 && state.yPrev == 0) {
+            state.xPrev = event.clientX;
+            state.yPrev = event.clientY;
+            return;
+        } else {
+            let dx = event.clientX - state.xPrev;
+            let dy = event.clientY - state.yPrev;
+            if (state.mouseLDown) {
+                $(event.target).offset({
+                    top: dy,
+                    left: dx
+                });
+            }
+        }
+    });
+    $('#canvas > ul > li').on('mouseup', (event: MouseUpEvent) => {
+        state.mouseLDown = false;
+        console.log("MouseUp");
+    });
+ */
 }
 

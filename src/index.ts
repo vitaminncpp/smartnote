@@ -4,16 +4,17 @@ import {addChapter, addNote, addSection, createNotebook, Notebook} from "./noteb
 import {renderChapterList, renderNotebook, renderNotes, renderSectionList} from "./render/Render";
 import ClickEvent = JQuery.ClickEvent;
 import {eraseCookie, getCookie, setCookie} from "./util/util";
-
+import {marked} from "marked";
 const converter = new Converter({tables: true});
 var notebook: Notebook = createNotebook("New Notebook");
 
+console.log("hello");
 $('.btn-preview').on('click', (event: ClickEvent) => {
     parent = event.target.parentElement.id;
     let contentSelection: string = `#${parent} > .markdown-input > textarea`;
     let content: string = ($(contentSelection).val()).toString();
     let previewSelection: string = `#${parent} > .markdown-preview`;
-    let preview: string = converter.makeHtml(content);
+    let preview: string = marked(content);
     // let preview = marked(content);
     $(previewSelection).html(preview);
 });
@@ -62,8 +63,6 @@ export const editNote: (event: ClickEvent) => void = (event: ClickEvent) => {
         contentBody.attr("contenteditable", "true");
         contentBody.removeClass('view-mode');
         contentBody.addClass('edit-mode');
-        console.log(notebook.currChapt.notes[key].content);
-        console.log(key);
         editor.val(notebook.currChapt.notes[key].content);
         contentBody.css({'display': 'none'});
         editor.css({'display': 'block'});
@@ -127,6 +126,7 @@ const init = () => {
     $('#btn-go').on('click', (event: ClickEvent) => {
         $('#dummy').html($('#xss').val().toString());
     });
+
 }
 init();
 

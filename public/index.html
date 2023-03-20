@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./style/note.css"/>
     <link rel="stylesheet" type="text/css" href="./style/header.css"/>
     <link rel="stylesheet" type="text/css" href="./style/markdown.css"/>
+    <link rel="stylesheet" type="text/css" href="./style/forms.css"/>
     <title>Smart note</title>
 </head>
 <body>
@@ -28,8 +29,27 @@
             <button id="btn-load">Load</button>
             <button id="btn-delete">Delete</button>
         </div>
-    </header>
 
+        <div class="profile">
+            <button id="login"></button>
+            <button id="google-login">
+                <img src="assets/google.svg" alt="google logo">
+            </button>
+        </div>
+
+    </header>
+    <div class="form" id="signup-form">
+        <div class="top-bar">
+            <button id="btn-close">
+                close
+            </button>
+        </div>
+        <label for="email-signup">Email</label>
+        <input id="email-signup" type="text">
+        <label for="pwd-signup">Password</label>
+        <input id="pwd-signup" type="text">
+        <button id="btn-signup">Sign up</button>
+    </div>
     <div class="content">
         <div class="action-bar">
 
